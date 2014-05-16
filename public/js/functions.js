@@ -1,33 +1,48 @@
+var loc={
+    lat: 0,
+    lng: 0,
+};
+
 var foodRoulette = {
-	initialize: function() {
-		var loc={};
-		var geocoder = new google.maps.Geocoder();
-		if(google.loader.ClientLocation) {
-	        loc.lat = google.loader.ClientLocation.latitude;
-	        loc.lng = google.loader.ClientLocation.longitude;
-	        var latlng = new google.maps.LatLng(loc.lat, loc.lng);
-	        geocoder.geocode({'latLng': latlng}, function(results, status) {
-	            if(status == google.maps.GeocoderStatus.OK) {
-	            	foodRoulette.initializeData(loc.lat, loc.lng);
-	            };
-	        });
-		}
+    getLocation: function() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(position);
+            loc = {
+                lat:position.coords.latitude,
+                lng:position.coords.longitude
+            };
+            foodRoulette.initializeData(loc);
+        })
+        
     },
 
-    initializeData: function(l1, l2) {
-    	$.ajax({
-    		url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+l1+','+l2+'&radius=100&types=food',
-    		dataType: 'jsonp',
-    		success: function(data) {
-    			console.log(data);
-    		}
-    	})
+    initializeData: function(loc) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: loc,
+            zoom: 15
+        });
+
+        var request = {
+            location: loc,
+            radius: '500',
+            types: ['restaurant']
+        };
+
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, this.callback);
+    },
+
+    callback: function(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            console.log(results[i]);
+            var place = results[i];
+        }
+      }
     },
 
     init:jQuery(function($) {
-    	foodRoulette.initialize();
-    	// foodRoulette.initializeData();
+    	foodRoulette.getLocation();
     })
 }
 
-// google.load("maps", "3.x", {other_params: "sensor=false", callback:initialize});
