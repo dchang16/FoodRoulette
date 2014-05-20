@@ -4,17 +4,42 @@
 		<title>Food Roulette</title>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<link rel='stylesheet' href='css/bootstrap.css'>
+		<link rel='stylesheet' href='css/style.css'>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:600,700' rel='stylesheet' type='text/css'>
 		<script type='text/javascript' src='js/jquery.js'></script>
 		<script type='text/javascript' src='js/bootstrap.js'></script>
 		<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?sensor=false'></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true_or_false"></script>
 		<script type='text/javascript' src='http://www.google.com/jsapi'></script>
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
 	</head>
 	<body>
+		<div class="wrap">	
+			<button class="clicker">press</button>
+			<div class="circle angled"></div>
+		</div>
+
+
+
+		<div class="one">
+			<div class="button-wrap">
+				<div class="button-bg">
+					<div class="button-out">out</div>
+					<div class="button-in">in</div>
+					<div class="button-switch"></div>
+				</div>
+			</div>
+		</div>
+
+
 		<div id='map'>
 
 		</div>
 	</body>
 	<script src='js/functions.js'></script>
+	<script>
+	$('.button-wrap').on("click", function(){
+	  $(this).toggleClass('button-active');
+	});
+	</script>
 
 </html>
