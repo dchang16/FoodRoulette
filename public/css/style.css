@@ -23,38 +23,28 @@
 
 .clicker:active{
     transform: translate(0, 1px);
-  height: 63px;
+    height: 63px;
     box-shadow: 0px 1px 0 0 rgb(190,190,190) inset;
 }
 
 .circle{
     position: relative;
-  border-radius:40px;
+    border-radius:40px;
     width: 80px;
     height: 80px;
     z-index: 1;
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
 }
 
 .circle.third{
   border-radius: 0;
 }
 
-.clicker.faster:hover + .circle, .clicker.faster:active + .circle {
-    animation: rotator linear .4s infinite;
-}
-
-.clicker.fast:hover + .circle, .clicker.fast:active + .circle {
-    animation: rotator linear .5s infinite;
-}
-
-.clicker:hover + .circle, .clicker:active + .circle {
-    animation: rotator linear .8s infinite;
-}
-
-@keyframes rotator{
-    from{ transform: rotate(0deg); }
-    to{ transform: rotate(360deg); }
-}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
     
 .angled {
@@ -67,37 +57,11 @@
                 white 100%);
     }
 
-.angled.second{
-        background-image: linear-gradient( 
-                white 0%,
-                white 30%,
-                rgb(250,160,120) 30%,
-                rgb(250,160,120) 70%, 
-                white 70%, 
-                white 100%);
-}
-
-.angled.third{
-      background-image: linear-gradient(45deg, 
-                white 0%,
-                white 30%,
-                rgb(130,230,135) 30%,
-                rgb(130,230,135) 70%, 
-                white 70%, 
-                white 100%);
-    }
-}
-
-
 *, *:before, *:after {
    -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
   box-sizing: border-box;
 }
-body {
-  font-family:'Helvetica', sans-serif; 
-}
-
 
 /* BUTTON 1 */
 
@@ -109,7 +73,7 @@ body {
 }
 .one .button-bg {
   width: 100%;
-  height: 20%;
+  height: 50px;
   background-color: #000;
   border-radius: 40px;
   padding: 3px;
