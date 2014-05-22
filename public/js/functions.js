@@ -3,6 +3,11 @@ var loc={
     lng: 0,
 };
 
+var deviceDimensions = {
+    width : $(window).width(),
+    height : $(window).height()
+};
+
 var foodRoulette = {
     getLocation: function() {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -11,12 +16,17 @@ var foodRoulette = {
                 lat:position.coords.latitude,
                 lng:position.coords.longitude
             };
-            foodRoulette.initializeData(loc);
+            foodRoulette.findRestaurant(loc);
         })
         
     },
 
-    initializeData: function(loc) {
+    initialize: function() {
+        var mainHeight = deviceDimensions.height - 55;
+        document.getElementsByClassName('greenbg')[0].style.height = mainHeight + 'px';
+    },
+
+    findRestaurant: function(loc) {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: loc,
             zoom: 15
@@ -34,14 +44,17 @@ var foodRoulette = {
 
     callback: function(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            console.log(results[i]);
-            var place = results[i];
+            var rand = Math.floor(Math.random() * results.length);
+            console.log(results[rand]);
         }
-      }
+    },
+
+    showResult: function(place) {
+
     },
 
     init:jQuery(function($) {
+        foodRoulette.initialize();
     	foodRoulette.getLocation();
     })
 }

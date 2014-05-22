@@ -105,20 +105,26 @@
 .one .button-active .button-in { color:#22dd22; }
 .one .button-active .button-bg { background-color:#000; }
 
-.main {
-  background-image:url('../img/greenbg.jpg');
-  background-repeat:no-repeat;
+.greenbg {
+  background:url('../img/greenbg.jpg') no-repeat center center fixed;
   background-size: cover;
+  -webkkit-background-size : cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   border-color: #009900;
-  width: 100%;
-  height:90%;
+  min-height: 90%;
+}
+
+.main {
+  position: relative;
+  top: 30%;
+  transform: translateY(-50%);
 }
 
 .mainfont {
-  margin-top:30%;
   font-size:25px;
   color:#fff;
   text-align:center;
-font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;}
+  font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;}
 
 
