@@ -40,49 +40,32 @@
 				<div>
 					<p class="mainfont">Touch to Nom!</p>
 				</div>
-				<!-- <div class="wrap">	
-					<button class="clicker">Nom!</button>
-					<div class="circle angled"></div>
-				</div> -->
-				<!-- <div class="cube">
-					<div class="side1"></div>
-					<div class="side2"></div>
-					<div class="side3"></div>
-					<div class="side4"></div>
-					<div class="side5"></div>
-					<div class="side6"></div>
-				</div> -->
-				<div class="stage" style="width: 120px; height: 120px;">
-				<div class="cubespinner">
-				<div class="face1">1</div>
-				<div class="face2">2</div>
-				<div class="face3">3</div>
-				<div class="face4">4</div>
-				<div class="face5">5</div>
-				<div class="face6">6</div>
+				<div id="dice">
+					<div class="cubespinner">
+						<div class="face1">1</div>
+						<div class="face2">2</div>
+						<div class="face3">3</div>
+						<div class="face4">4</div>
+						<div class="face5">5</div>
+						<div class="face6">6</div>
+					</div>
 				</div>
-				</div>
-				<div class="one">
-					<div class="button-wrap">
-						<div class="button-bg">
-							<div class="button-out">out</div>
-							<div class="button-in">in</div>
-							<div class="button-switch"></div>
+				<div id="restaurant">
+					<div class="myContainer">
+						<div id="rtitle">
+							<div class="row">
+								<div id="rname" class="col-sm-10"></div>
+								<div id="rprice" class="col-sm-2"></div>
+							</div>
+							<div id="rrating"></div>
 						</div>
+						<div id="rmap"></div>
+						<div id="rdetails"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div id="map">
-
-		</div>
 	</body>
 	<script src='js/functions.js'></script>
-	<script>
-	$('.button-wrap').on("click", function(){
-	  $(this).toggleClass('button-active');
-	});
-	</script>
 
 </html>

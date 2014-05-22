@@ -8,6 +8,8 @@ var deviceDimensions = {
     height : $(window).height()
 };
 
+var map;
+
 var foodRoulette = {
     getLocation: function() {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -16,7 +18,9 @@ var foodRoulette = {
                 lat:position.coords.latitude,
                 lng:position.coords.longitude
             };
-            foodRoulette.findRestaurant(loc);
+            $("#dice").on("click", function() {
+                foodRoulette.findRestaurant(loc);
+            })
         })
         
     },
@@ -27,14 +31,17 @@ var foodRoulette = {
     },
 
     findRestaurant: function(loc) {
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('rmap'), {
             center: loc,
             zoom: 15
         });
 
+        var randomRadius = Math.floor(Math.random() * 500) + 1000;
+
         var request = {
             location: loc,
-            radius: '500',
+            radius: '' + randomRadius,
+            openNow : 'true',
             types: ['restaurant']
         };
 
@@ -45,12 +52,48 @@ var foodRoulette = {
     callback: function(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             var rand = Math.floor(Math.random() * results.length);
-            console.log(results[rand]);
+            foodRoulette.createMarker(results[rand]);
+            foodRoulette.showResult(results[rand]);
         }
     },
 
-    showResult: function(place) {
+    createMarker: function(place) {
+        var placeLoc = place.geometry.location;
+        map = new google.maps.Map(document.getElementById('rmap'), {
+            center: placeLoc,
+            zoom: 15
+        });
+        var marker = new google.maps.Marker( {
+            map: map,
+            position: place.geometry.location
+        })
+    },
 
+    showResult: function(place) {
+        console.log(place);
+        var price = ''
+        var rating = place.rating;
+        if (place.price_level == 1) {
+            price = '$';
+        }
+        else if (place.price_level == 2) {
+            price = '$$';
+        }
+        else if (place.price_level == 3) {
+            price = '$$$';
+        }
+        else if (place.price_level == 4) {
+            price = '$$$$';
+        }
+        $("#rname").html(place.name);
+        for(var i = 0; i < rating; i++) {
+            var star = document.createElement("img");
+            star.src="img/star.png";
+            star.style.width="15px";
+            document.getElementById("rrating").appendChild(star);
+        }
+        $("#rprice").html(price);
+        $("#rdetails").html(place.vicinity);
     },
 
     init:jQuery(function($) {
