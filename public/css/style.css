@@ -118,8 +118,7 @@
 
 #rmap {
   position:relative;
-  min-height : 40%;
-  width: auto;
+  min-height : 200px;
   border-bottom : thin solid #009900;
 }
 
@@ -171,7 +170,7 @@
   border-bottom-left-radius: 10px 5px;
   border-top-right-radius: 10px;
   position:absolute;
-  bottom:-10%;
+  bottom:-11%;
 }
 
 .wrapper {

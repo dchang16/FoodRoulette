@@ -28,16 +28,15 @@ var foodRoulette = {
     initialize: function() {
         var mainHeight = deviceDimensions.height - 55;
         document.getElementsByClassName('greenbg')[0].style.height = mainHeight + 'px';
-    },
-
-    findRestaurant: function(loc) {
+        document.getElementById('rmap').style.width=""+deviceDimensions.width-5+"px";
         map = new google.maps.Map(document.getElementById('rmap'), {
             center: loc,
             zoom: 15
         });
+    },
 
+    findRestaurant: function(loc) {
         var randomRadius = Math.floor(Math.random() * 500) + 1000;
-
         var request = {
             location: loc,
             radius: '' + randomRadius,
@@ -52,7 +51,6 @@ var foodRoulette = {
     callback: function(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             var rand = Math.floor(Math.random() * results.length);
-            foodRoulette.createMarker(results[rand]);
             foodRoulette.clearElements();
             foodRoulette.showResult(results[rand]);
         }
@@ -96,6 +94,8 @@ var foodRoulette = {
         $("#rprice").html(price);
         $("#rdetails").html(place.vicinity);
         $("#restaurant").fadeIn(1000);
+        foodRoulette.createMarker(place);
+
     },
 
     clearElements: function() {
