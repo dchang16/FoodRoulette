@@ -53,6 +53,7 @@ var foodRoulette = {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             var rand = Math.floor(Math.random() * results.length);
             foodRoulette.createMarker(results[rand]);
+            foodRoulette.clearElements();
             foodRoulette.showResult(results[rand]);
         }
     },
@@ -72,7 +73,7 @@ var foodRoulette = {
     showResult: function(place) {
         console.log(place);
         var price = ''
-        var rating = place.rating;
+        var rating = Math.round(place.rating);
         if (place.price_level == 1) {
             price = '$';
         }
@@ -94,6 +95,14 @@ var foodRoulette = {
         }
         $("#rprice").html(price);
         $("#rdetails").html(place.vicinity);
+        $("#restaurant").fadeIn(1000);
+    },
+
+    clearElements: function() {
+        var elem = document.getElementById("rrating");
+        while(elem.firstChild) {
+            elem.removeChild(elem.firstChild);
+        }
     },
 
     init:jQuery(function($) {

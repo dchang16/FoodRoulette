@@ -117,27 +117,51 @@
 }
 
 #rmap {
-  height : 50%;
+  position:relative;
+  min-height : 40%;
+  width: auto;
+  border-bottom : thin solid #009900;
 }
 
 #rtitle {
   margin-top:5px;
-  margin-bottom: 15px;
   width: 100%;
   border-bottom : thin solid #009900;
 }
 #rname {
   margin-left:5%;
   font-size: 20px;
+  width:80%;
 }
 #rrating {
   margin-left:5%;
 }
 
-#restaurant {
-/*  display: none;
+#rprice {
+  margin-left:5%;
+  margin-bottom:2%;
+}
 
-*/height : 50%;
+#rdetails {
+  margin-top:5px;
+  padding-bottom:5px;
+  padding-left:5%;
+  font-size:18px;
+  font-weight:bold;
+  border-bottom: thin solid #009900;
+}
+
+#rdirections{
+  margin-top:5px;
+  margin-bottom:5px;
+  padding-left:5%;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#restaurant {
+  display: none;
+  height : auto;
   border: thin solid #009900;
   background-color: #fff;
   font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", sans-serif;
@@ -146,4 +170,12 @@
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px 5px;
   border-top-right-radius: 10px;
+  position:absolute;
+  bottom:-10%;
 }
+
+.wrapper {
+  min-height:90%;
+  position:relative;
+}
+
