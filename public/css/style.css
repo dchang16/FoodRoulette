@@ -118,7 +118,6 @@
 
 #rmap {
   position:relative;
-  min-height : 200px;
   border-bottom : thin solid #009900;
 }
 
@@ -126,10 +125,12 @@
   margin-top:5px;
   width: 100%;
   border-bottom : thin solid #009900;
+  overflow:hidden;
 }
 #rname {
   margin-left:5%;
   font-size: 20px;
+  font-size:7vw;
   width:80%;
 }
 #rrating {
@@ -137,30 +138,32 @@
 }
 
 #rprice {
-  margin-left:5%;
-  margin-bottom:2%;
+  font-size:4vw;
+  float:right;
+  margin-right:5%;
 }
 
 #rdetails {
-  margin-top:5px;
-  padding-bottom:5px;
+  padding-top:2%;
   padding-left:5%;
   font-size:18px;
   font-weight:bold;
   border-bottom: thin solid #009900;
+  font-size:5vw;
+    vertical-align:middle;
+
 }
 
 #rdirections{
-  margin-top:5px;
-  margin-bottom:5px;
+  padding-top:2%;
   padding-left:5%;
   font-size:18px;
+  font-size:5vw;
   font-weight:bold;
 }
 
 #restaurant {
   display: none;
-  height : auto;
   border: thin solid #009900;
   background-color: #fff;
   font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", sans-serif;

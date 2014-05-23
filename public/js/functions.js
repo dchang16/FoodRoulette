@@ -29,6 +29,11 @@ var foodRoulette = {
         var mainHeight = deviceDimensions.height - 55;
         document.getElementsByClassName('greenbg')[0].style.height = mainHeight + 'px';
         document.getElementById('rmap').style.width=""+deviceDimensions.width-5+"px";
+        document.getElementById('rmap').style.height=""+deviceDimensions.height*0.25+"px";
+        document.getElementById('rtitle').style.height=""+deviceDimensions.height*0.10+"px";
+        document.getElementById('rdetails').style.height=""+deviceDimensions.height*0.075+"px";
+        document.getElementById('rdirections').style.height=""+deviceDimensions.height*0.05+"px";
+        document.getElementById('restaurant').style.height="" + deviceDimensions.height*0.5+"px";
         map = new google.maps.Map(document.getElementById('rmap'), {
             center: loc,
             zoom: 15
@@ -72,28 +77,58 @@ var foodRoulette = {
         console.log(place);
         var price = ''
         var rating = Math.round(place.rating);
-        if (place.price_level == 1) {
-            price = '$';
-        }
-        else if (place.price_level == 2) {
-            price = '$$';
-        }
-        else if (place.price_level == 3) {
-            price = '$$$';
-        }
-        else if (place.price_level == 4) {
-            price = '$$$$';
-        }
-        $("#rname").html(place.name);
-        for(var i = 0; i < rating; i++) {
-            var star = document.createElement("img");
-            star.src="img/star.png";
-            star.style.width="15px";
-            document.getElementById("rrating").appendChild(star);
-        }
-        $("#rprice").html(price);
         $("#rdetails").html(place.vicinity);
-        $("#restaurant").fadeIn(1000);
+        if($("#restaurant").is(":visible")) {
+            $("#restaurant").fadeOut(500, function() {
+                if (place.price_level == 1) {
+                        price = '$';
+                    }
+                    else if (place.price_level == 2) {
+                        price = '$$';
+                    }
+                    else if (place.price_level == 3) {
+                        price = '$$$';
+                    }
+                    else if (place.price_level == 4) {
+                        price = '$$$$';
+                    }
+                    $("#rname").html(place.name);
+                    for(var i = 0; i < rating; i++) {
+                        var star = document.createElement("img");
+                        star.src="img/star.png";
+                        star.style.width="15px";
+                        document.getElementById("rrating").appendChild(star);
+                    }
+                $("#rprice").html(price);    
+                $("#restaurant").fadeIn(1000, function() {
+                    
+                });
+            });
+        }
+        else {
+            if (place.price_level == 1) {
+                    price = '$';
+                }
+                else if (place.price_level == 2) {
+                    price = '$$';
+                }
+                else if (place.price_level == 3) {
+                    price = '$$$';
+                }
+                else if (place.price_level == 4) {
+                    price = '$$$$';
+                }
+                $("#rname").html(place.name);
+                for(var i = 0; i < rating; i++) {
+                    var star = document.createElement("img");
+                    star.src="img/star.png";
+                    star.style.width="15px";
+                    document.getElementById("rrating").appendChild(star);
+                }
+                $("#rprice").html(price);
+            $("#restaurant").fadeIn(1000, function() {
+            });
+        }
         foodRoulette.createMarker(place);
 
     },
